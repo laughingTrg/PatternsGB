@@ -1,0 +1,2 @@
+# PatternsGB
+Class "WSGI patterns"
