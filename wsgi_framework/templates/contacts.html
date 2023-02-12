@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style type="text/css">
+      fieldset {
+        width: 310px;
+        margin-top: 20px;
+        border: 1px solid #d6d6d6;
+        background-color: #ffffff;
+        line-height: 1.6em;
+      }
+      legend {
+        font-style: italic;
+        color: #666666;
+      }
+      input[type="text"] {
+        width: 120px;
+        border: 1px solid #d6d6d6;
+        padding: 2px;
+        outline: none;
+      }
+      input[type="text"]:focus,
+      input[type="text"]:hover {
+        background-color: #d0e2f0;
+        border: 1px solid #999999;
+      }
+      input[type="submit"] {
+        border: 1px solid #006633;
+        background-color: #009966;
+        color: #ffffff;
+        border-radius: 5px;
+        padding: 5px;
+        margin-top: 10px;
+      }
+      input[type="submit"]:hover {
+        border: 1px solid #006633;
+        background-color: #00cc33;
+        color: #ffffff;
+        cursor: pointer;
+      }
+      .title {
+        float: left;
+        width: 160px;
+        clear: left;
+      }
+      .submit {
+        width: 310px;
+        text-align: right;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="top_teachers">
+      <!-- <img class="top__img" src="./img/top_back_girl.jpeg" alt=""> -->
+      <div class="container">
+        <div class="head">
+          <div class="logo">
+            <img class="head-logo" src="./img/logo.png" alt="logo-Chpk2" />
+            <h1 class="head-head">ЧПК2</h1>
+          </div>
+          <div class="menu">
+            <div class="menu__li">
+              <a href="index.html" class="menu__li-a">Главная</a>
+            </div>
+            <div class="menu__li">
+              <a href="teachers.html" class="menu__li-a">Учителя</a>
+            </div>
+            <div class="menu__li">
+              <a href="reiting.html" class="menu__li-a">Рейтинг Учителя</a>
+            </div>
+            <div class="menu__li">
+              <a href="contacts.html" class="menu__li-a">Контакты</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form action="" method="post">
+      <fieldset>
+        <legend>Форма обратной связи</legend>
+        <p>
+          <label class="title" for="theme">Тема сообщения:</label>
+          <input type="text" name="theme" id="theme" /><br />
+          <label class="title" for="email">Ваш email:</label>
+          <input type="text" name="email" id="email" /><br />
+          <label class="title" for="mess">Текст сообщения:</label>
+          <textarea cols="25" rows="7" name="mess" id="mess"></textarea>
+        </p>
+      </fieldset>
+      <div class="submit"><input type="submit" value="Отправить" /></div>
+    </form>
+  </body>
+</html>
