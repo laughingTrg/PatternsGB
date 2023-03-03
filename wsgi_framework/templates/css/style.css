@@ -6,33 +6,27 @@
 }
 
 .top {
-  background: linear-gradient(
-      89.85deg,
+  background: linear-gradient(89.85deg,
       #000000 0.13%,
       #000000 0.14%,
-      rgba(0, 0, 0, 0) 99.56%
-    ),
+      rgba(0, 0, 0, 0) 99.56%),
     url(../img/top_back_girl.jpeg) top right -120px/100% no-repeat, #26335d;
   min-height: 100vh;
   padding-bottom: 50px;
 }
 
 .top_teachers {
-  background: linear-gradient(
-    89.85deg,
-    #000000 0.13%,
-    #000000 0.14%,
-    rgba(0, 0, 0, 0) 99.56%
-  );
+  background: linear-gradient(89.85deg,
+      #000000 0.13%,
+      #000000 0.14%,
+      rgba(0, 0, 0, 0) 99.56%);
 }
 
 .top__rate {
-  background: linear-gradient(
-    89.85deg,
-    #000000 0.13%,
-    #000000 0.14%,
-    rgba(0, 0, 0, 0) 99.56%
-  );
+  background: linear-gradient(89.85deg,
+      #000000 0.13%,
+      #000000 0.14%,
+      rgba(0, 0, 0, 0) 99.56%);
   height: 5vh;
   min-height: 0;
 }
@@ -349,7 +343,10 @@
   padding: 4px 0;
   width: 11.11111%;
   margin-bottom: 35px;
+
 }
+
+p>strong {}
 
 .proud__content-heading {
   font-weight: 700;

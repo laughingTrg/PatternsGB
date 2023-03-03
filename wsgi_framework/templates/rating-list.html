@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block title %} Список рейтингов {% endblock %} {%
+block style %} {% include "inc-style.html" %} {% endblock %} {% block menu %} {%
+include "inc-menu.html" %} {% endblock %} {% block body %}
+<a href="/">назад</a>
+
+<h1>Список рейтингов</h1>
+<ul>
+  {% for item in objects_list %}
+  <li>
+    {{item.month}}
+    <span
+      >Преподаватель: {{item.teacher}} Количество баллов: {{item.score}}</span
+    >
+  </li>
+  {% endfor %}
+</ul>
+
+<div>
+  <li><a href="/create-rating/">Создать рейтинг</a></li>
+</div>
+{% endblock %}

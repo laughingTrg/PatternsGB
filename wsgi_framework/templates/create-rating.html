@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block title %} Создание рейтинга {% endblock %} {%
+block style %} {% include "inc-style.html" %} {% endblock %} {% block menu %} {%
+include "inc-menu.html" %} {% endblock %} {% block body %}
+
+<a href="/">назад</a>
+
+<h1>Список рейтингов</h1>
+<ul>
+  {% for item in objects_list %}
+  <li>
+    {{item.month}}
+    <span
+      >Преподаватель: {{item.teacher}} Количество баллов: {{item.score}}</span
+    >
+  </li>
+  {% endfor %}
+</ul>
+
+<h1>Создание рейтинга</h1>
+<form method="post">
+  <input type="text" name="month" placeholder="Месяц (англ)" />
+  <input type="text" name="teacher" placeholder="Учитель" />
+  <input type="text" name="score" placeholder="Количество баллов" />
+  <button type="submit">Сохранить и вернуться к списку</button>
+</form>
+{% endblock %}
