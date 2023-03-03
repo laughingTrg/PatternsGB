@@ -3,7 +3,7 @@ block style %} {% include "inc-style.html" %} {% endblock %} {% block menu %} {%
 include "inc-menu.html" %} {% endblock %} {% block body %}
 
 <a href="/">назад</a>
-
+{% if objects_list %}
 <h1>Список рейтингов</h1>
 <ul>
   {% for item in objects_list %}
@@ -15,6 +15,7 @@ include "inc-menu.html" %} {% endblock %} {% block body %}
   </li>
   {% endfor %}
 </ul>
+{% endif %}
 
 <h1>Создание рейтинга</h1>
 <form method="post">

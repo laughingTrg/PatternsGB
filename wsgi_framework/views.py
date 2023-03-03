@@ -53,4 +53,8 @@ class CreateRating:
 class RatingList:
     def __call__(self, request):
         logger.log('Список рейтингов')
-        return '200 OK', render('rating-list.html', objects_list=site.ratings)
+        if len(site.ratings) > 0:
+            return '200 OK', render('rating-list.html',
+                                objects_list=site.ratings)
+        else:
+            return '200 OK', render('rating-list.html')

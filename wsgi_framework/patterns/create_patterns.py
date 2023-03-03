@@ -7,7 +7,9 @@ class User:
 
 # преподаватель
 class Teacher(User):
-    pass
+    def __init__(self, name):
+        self.name = name
+    
 
 # администратор
 class Admin(User):
