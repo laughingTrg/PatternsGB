@@ -1,5 +1,5 @@
 from datetime import date, time
-from views import MainPage, Teachers, Reiting, Contacts, CreateRating, RatingList
+from views import MainPage, Teachers, Contacts, CreateRating, RatingList
 
 def date_front(request):
     request['date'] = date.today()
@@ -12,10 +12,3 @@ def time_front(request):
 
 fronts = [date_front, something_front, time_front]
 
-routes = {
-        '/': MainPage(),
-        '/teachers/': Teachers(),
-        '/rating-list/': RatingList(),
-        '/contacts/': Contacts(),
-        '/create-rating/': CreateRating(),
-        }
