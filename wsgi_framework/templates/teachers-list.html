@@ -1,11 +1,11 @@
-{% extends "base.html" %} {% block title %} Список рейтингов {% endblock %} {%
+{% extends "base.html" %} {% block title %} Список учителей {% endblock %} {%
 block style %} {% include "inc-style.html" %} {% endblock %} {% block menu %} {%
 include "inc-menu.html" %} {% endblock %} {% block body %}
 <a href="/">назад</a>
 
 <h1>Список преподавателей</h1>
 <ul>
-  {% for item in teachers %}
+  {% for item in objects_list %}
   <li>
     <span>Преподаватель: {{item.name}} </span>
   </li>
@@ -13,6 +13,6 @@ include "inc-menu.html" %} {% endblock %} {% block body %}
 </ul>
 
 <div>
-  <li><a href="/create-teacher/">Добавить преподавателя</a></li>
+  <li><a href="/create-teacher">Добавить преподавателя</a></li>
 </div>
 {% endblock %}

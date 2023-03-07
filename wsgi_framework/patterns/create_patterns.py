@@ -1,15 +1,19 @@
 from quopri import decodestring
 from copy import deepcopy
+from .behavior_patterns import FileWriter, Subject 
 
 #абстрактный пользователь
 class User:
-    pass
+
+    def __init__(self, name):
+        self.name = name
 
 # преподаватель
 class Teacher(User):
-    def __init__(self, name):
-        self.name = name
     
+    def __init__(self, name):
+        self.ratings = []
+        super().__init__(name)
 
 # администратор
 class Admin(User):
@@ -29,8 +33,8 @@ class UserFactory:
 
     # порождающий паттерн фабричный метод
     @classmethod
-    def create(cls, user_type):
-        return cls.types[user_type]()
+    def create(cls, user_type, name):
+        return cls.types[user_type](name)
 
 # порождающий паттерн Прототип
 class TeacherRatingPrototype:
@@ -39,12 +43,22 @@ class TeacherRatingPrototype:
     def clone(self):
         return deepcopy(self)
 
-class TeacherRating(TeacherRatingPrototype):
+class TeacherRating(TeacherRatingPrototype, Subject):
 
     def __init__(self, month, teacher, score):
         self.teacher = teacher
         self.score = score
         self.month = month
+        self.teachers = []
+        super().__init__()
+
+    def __getitem__(self, item):
+        return self.teachers[item]
+
+    def add_teacher(self, teacher: Teacher):
+        self.teachers.append(teacher)
+        teacher.ratings.append(self)
+        self.notify()
 
 class SeptemberTeacherRating(TeacherRating):
     pass
@@ -104,19 +118,22 @@ class Engine:
         self.ratings = []
 
     @staticmethod
-    def create_user(user_type):
-        return UserFactory.create(user_type)
+    def create_user(user_type, name):
+        return UserFactory.create(user_type, name)
 
     @staticmethod
     def create_rating(month, teacher, score):
         return TeacherRatingFactory.create(month, teacher, score)
 
-    def find_rating_by_month(self, month):
-        result = []
+    def get_rating_by_month(self, month):
         for rate in self.ratings:
             if rate.month == month:
-                result.append(rate)
-        return result
+                return rate
+
+    def get_teacher(self, name) -> Teacher:
+        for item in self.teachers:
+            if item.name == name:
+                return item
 
     @staticmethod
     def decode_value(val):
@@ -146,9 +163,10 @@ class SingletonByName(type):
 
 class Logger(metaclass=SingletonByName):
 
-    def __init__(self, name):
+    def __init__(self, name, writer=FileWriter()):
         self.name = name
+        self.writer = writer
 
-    @staticmethod
-    def log(text):
+    def log(self, text):
         print('log--->', text)
+        self.writer.write(text)
