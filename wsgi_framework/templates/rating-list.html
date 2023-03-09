@@ -12,7 +12,8 @@ include "inc-menu.html" %} {% endblock %} {% block body %}
       >{{item.month}}</span
     >
     <span
-      >Преподаватель: {{item.teacher}} Количество баллов: {{item.score}}</span
+      >Преподаватель: {{item.teacher.name}} Количество баллов:
+      {{item.score}}</span
     >
   </li>
   {% endfor %}

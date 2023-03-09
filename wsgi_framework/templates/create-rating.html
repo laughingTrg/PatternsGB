@@ -10,7 +10,8 @@ include "inc-menu.html" %} {% endblock %} {% block body %}
   <li>
     {{item.month}}
     <span
-      >Преподаватель: {{item.teacher}} Количество баллов: {{item.score}}</span
+      >Преподаватель: {{item.teacher.name}} Количество баллов:
+      {{item.score}}</span
     >
   </li>
   {% endfor %}
@@ -18,10 +19,24 @@ include "inc-menu.html" %} {% endblock %} {% block body %}
 {% endif %}
 
 <h1>Создание рейтинга</h1>
+{% if teachers_obj %}
 <form method="post">
   <input type="text" name="month" placeholder="Месяц (англ)" />
-  <input type="text" name="teacher" placeholder="Учитель" />
+  <select name="teacher">
+    {% for obj in teachers_obj %}
+    <option name="teacher" value="{{ obj.name }}">{{ obj.name }}</option>
+    {% endfor %}
+  </select>
+  <!--<input type="text" name="teacher" placeholder="Учитель" />-->
   <input type="text" name="score" placeholder="Количество баллов" />
   <button type="submit">Сохранить и вернуться к списку</button>
 </form>
-{% endblock %}
+{% else %}
+<h2>
+  У вас нет доступных преподавателей. <br />
+  Сначала создайте преподавателей
+</h2>
+<div>
+  <li><a href="/create-teacher/">Добавить преподавателя</a></li>
+</div>
+{% endif %} {% endblock %}
