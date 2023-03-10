@@ -1,14 +1,17 @@
 from datetime import date
 
 from wsgi_framework.templator import render
-from patterns.create_patterns import Engine, Logger
+from patterns.create_patterns import Engine, Logger, MapperRegistry
 from patterns.struct_patterns import AppRoute, Debug
 from patterns.behavior_patterns import EmailNotifier, SmsNotifier, BaseSerializer, ListView, CreateView
+from patterns.archi_system_unit_of_work import UnitOfWork 
 
 site = Engine()
 logger = Logger('main')
 email_notifier = EmailNotifier()
 sms_notifier = SmsNotifier()
+UnitOfWork.new_current()
+UnitOfWork.get_current().set_mapper_registry(MapperRegistry)
 
 
 routes = {}
@@ -88,8 +91,11 @@ class RatingList:
 
 @AppRoute(routes=routes, url='/teachers-list/')
 class TeacherListView(ListView):
-    queryset = site.teachers
     template_name = 'teachers-list.html'
+
+    def get_queryset(self):
+        mapper = MapperRegistry.get_current_mapper('teachers')
+        return mapper.all()
 
 @AppRoute(routes=routes, url='/create-teacher/')
 class TeacherCreateView(CreateView):
@@ -99,8 +105,9 @@ class TeacherCreateView(CreateView):
         name = data['name']
         name = site.decode_value(name)
         new_obj = site.create_user('teacher', name)
-        print("create new obj", new_obj, new_obj.name)
         site.teachers.append(new_obj)
+        new_obj.mark_new()
+        UnitOfWork.get_current().commit()
 
 @AppRoute(routes=routes, url='/api/')
 class RatingApi:
